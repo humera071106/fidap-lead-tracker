@@ -1,0 +1,51 @@
+FIDAP SOLUTIONS — HOW TO LAUNCH OUR LEAD TRACKER
+================================================
+
+This is an INSTALLABLE WEB APP, not an APK. No Play Store needed.
+It will not share any real data until the Supabase database is set up.
+
+STEP 1 — SUPABASE (DATABASE)
+1. Sign up at https://supabase.com/dashboard and create a project.
+2. Choose SQL Editor > New query. Open supabase-schema.sql, copy
+   everything, paste into the editor, and click Run.
+3. In Authentication, disable open/public account sign-ups.
+4. In Authentication > Users, add approved employee accounts.
+5. In Project Settings > API / Connect, copy the PROJECT URL and
+   the PUBLISHABLE or ANON key (NOT the secret / service_role key).
+
+STEP 2 — GITHUB (PRIVATE SOURCE REPOSITORY)
+1. Create a PRIVATE GitHub repository, e.g. fidap-lead-tracker.
+2. Upload all the files in this folder, preserving folder structure.
+   The root must contain package.json and index.html.
+3. Do not upload credentials or an actual .env file.
+
+STEP 3 — CLOUDFLARE PAGES (HOSTING)
+1. Sign in at https://dash.cloudflare.com.
+2. Workers & Pages > Create application > Pages > Import Git repository.
+3. Select the private repository.
+4. Build command: npm run build
+   Build output directory: dist
+5. Add BUILD environment variables:
+   VITE_SUPABASE_URL = copied Supabase project URL
+   VITE_SUPABASE_ANON_KEY = copied public/publishable/anon key
+6. Save and Deploy. If variables were entered after deployment,
+   redeploy to bake them into the frontend.
+7. Open the resulting https://...pages.dev website.
+
+STEP 4 — TEST FIRST
+1. Employee A logs in, adds a lead.
+2. Employee B logs in, sees that lead and edits it.
+3. Both check the new status and lead history.
+4. Check search, category filters and follow-up dates.
+
+STEP 5 — INSTALL ON ANDROID
+In Google Chrome open the deployed URL > three dots >
+Install app (or Add to Home screen). The FIDAP icon appears on phone.
+
+EXISTING SHEETS: prior Google Sheets data will NOT auto-import.
+Do not discontinue the old sheet until old records are migrated.
+
+SAFETY: Never share passwords or Supabase secret/service_role keys.
+Only approved company employees should have login accounts.
+
+Full details and troubleshooting: README.md
